@@ -11,7 +11,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: { //设置开发接口代理
       '/api': {
-        target: 'http://localhost:5555/chat',
+        target: 'http://192.168.137.1:5555/chat',
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/' //将前缀 /api 转为 /
@@ -20,7 +20,7 @@ module.exports = {
     },
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '192.168.137.1', // can be overwritten by process.env.HOST
     port: 3000, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,

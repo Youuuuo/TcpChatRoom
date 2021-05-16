@@ -4,6 +4,6 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  IMG_URL: '"http://localhost:5555/chat/"',
-  SOCKET_URL: '"http://localhost:9999/"'
+  IMG_URL: '"http://192.168.137.1:5555/chat/"',
+  SOCKET_URL: '"http://192.168.137.1:9999/"'
 })
