@@ -12,6 +12,7 @@
       />
     </transition>
     <div class="wrapper hor-ver-center" :style="device === 'Mobile' ? {width: '90%'}:{}">
+<!--      下面部分为登录-->
       <el-form class="login-form" v-if="isLoginState">
         <div class="avatar">
           <el-avatar :size="100" :src="IMG_URL + loginInfo.avatar" @error="()=>true">
@@ -37,6 +38,7 @@
           <span>没有账号？<span class="operation-text" style="display: inline" @click="changeState(false)">注册</span></span>
         </el-form-item>
       </el-form>
+<!--      下面部分为注册-->
       <el-form class="register-form" v-if="!isLoginState">
         <div class="avatar" @click="setShowChooseAvatar(true)">
           <img :src="avatar" alt="" srcset="" width="100" height="100" style="border-radius: 50%">
@@ -86,7 +88,7 @@
   import avatarChoose from '@/components/avatarChoose'
   import copyRight from '@/components/copyright'
 
-  const faceRandom = Math.ceil(Math.random() * 10)
+  const faceRandom = Math.ceil(Math.random() * 22)
   export default {
     name: 'Login',
     data() {

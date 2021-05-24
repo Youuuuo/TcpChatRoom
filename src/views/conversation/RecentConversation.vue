@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="recent-conversation-list" v-loading="isLoading">
     <transition-group name="slide-up" appear>
       <conversation-item

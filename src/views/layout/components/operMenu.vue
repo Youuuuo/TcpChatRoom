@@ -81,14 +81,14 @@
     },
     methods: {
       logout() {
-        this.$confirm("确认登出", "提示", {
+        this.$confirm("确认退出", "提示", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning",
         }).then(() => {
           this.$message({
             type: "success",
-            message: "登出成功！",
+            message: "退出成功！",
           });
           this.$router.replace("/login");
           this.$socket.emit("leave");
@@ -102,7 +102,7 @@
         });
       },
       setShowTheme(flag) {
-        this.$emit('setShowTheme', flag)
+        this.$emit('setShowTheme', flag)  //触发事件：setShowTheme
       },
       showFeedBackDialog() {
         this.showFeedBack = !this.showFeedBack

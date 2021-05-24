@@ -163,6 +163,7 @@
           //this.playNotifySound() //这个函数不能在这里被执行
         }
       },
+      //播放音乐
       playNotifySound() {
         // console.log("是否正在播放：", isPlaying)
         if (isPlaying) return
