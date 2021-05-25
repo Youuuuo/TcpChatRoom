@@ -10,15 +10,21 @@
         @click="choose('face/'+item)">
         <img width="80" height="80" :src="IMG_URL + 'face/' + item" alt="" srcset="">
       </div>
-      <el-upload
-        class="avatar-uploader"
-        action="E:\face\"
-        :show-file-list="false"
-        :on-success="handleAvatarSuccess"
-        :before-upload="beforeAvatarUpload">
-        <img v-if="imageUrl" :src="imageUrl" class="avatar">
-        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-      </el-upload>
+      <el-form>
+      <el-form-item>
+        <el-upload ref="upfile"
+                   style="display: inline"
+                   :auto-upload="false"
+                   :on-change="handleChange"
+                   :file-list="fileList"
+                   action="#">
+          <el-button  type="success">选择文件</el-button>
+        </el-upload>
+      </el-form-item>
+      <el-form-item>
+        <el-button  type="success" @click="upload">点击上传</el-button>
+      </el-form-item>
+      </el-form>
     </div>
   </div>
 </template>
@@ -27,6 +33,8 @@
   export default {
     data() {
       return {
+        name:'',
+        fileList: [],
         imageUrl: '',
         avatarList: [],
         IMG_URL: process.env.IMG_URL
@@ -38,6 +46,34 @@
       }
     },
     methods: {
+      //通过onchanne触发方法获得文件列表
+      handleChange(file, fileList) {
+        this.fileList = fileList;
+        console.log(fileList)
+      },
+      upload(){
+
+        let fd = new FormData();
+        fd.append("name",this.name);
+        this.fileList.forEach(item=>{
+          //文件信息中raw才是真的文件
+          fd.append("files",item.raw);
+          //console.log(item.raw)
+        })
+        this.$http.uploadUi(fd).then(res=>{
+          if (res.data.code === 2000) {
+            this.$message.success('上传成功')
+            this.fileList = []
+            this.avatarList =[]
+            this.$http.getFaceImages().then(res => {
+              // console.log("获取的头像图片为：", res)
+              this.avatarList = res.data.data.files
+            })
+          }else{
+            this.$message.warning('失败')
+          }
+        })
+      },
       close() {
         this.$emit('close')
       },
@@ -46,23 +82,9 @@
         this.$emit('choose', item)
         this.$emit('close')
       },
-      handleAvatarSuccess(res, file) {
-        this.imageUrl = URL.createObjectURL(file.raw);
-      },
-      beforeAvatarUpload(file) {
-        const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
-
-        if (!isJPG) {
-          this.$message.error('上传头像图片只能是 JPG 格式!');
-        }
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
-        }
-        return isJPG && isLt2M;
-      }
     },
     mounted() {
+      this.avatarList = []
       this.$http.getFaceImages().then(res => {
         // console.log("获取的头像图片为：", res)
         this.avatarList = res.data.data.files

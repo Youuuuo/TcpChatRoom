@@ -13,6 +13,10 @@ export default {
   getFaceImages() {
     return request.get(`/api/sys/getFaceImages`)
   },
+  /*上传头像*/
+  uploadUi(data){
+    return request.post(`/api/sys/uploadUi`, data)
+  },
   /**上传文件 */
   uploadFile(data) {
     return request.post(`/api/sys/uploadFile`, data)
