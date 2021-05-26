@@ -18,11 +18,11 @@
                    :on-change="handleChange"
                    :file-list="fileList"
                    action="#">
-          <el-button  type="success">选择文件</el-button>
+          <el-button style="margin-left: 6px;margin-top: 10px" type="success">选择文件</el-button>
         </el-upload>
       </el-form-item>
       <el-form-item>
-        <el-button  type="success" @click="upload">点击上传</el-button>
+        <el-button style="margin-left: 6px"  type="success" @click="upload">点击上传</el-button>
       </el-form-item>
       </el-form>
     </div>

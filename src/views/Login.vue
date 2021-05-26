@@ -40,14 +40,14 @@
       </el-form>
 <!--      下面部分为注册-->
       <el-form class="register-form" v-if="!isLoginState">
-        <div class="avatar" @click="setShowChooseAvatar(true)">
+        <div class="avatar" @click="setShowChooseAvatar(true)" style="display: flex;width: 240px"  >
           <img :src="avatar" alt="" srcset="" width="100" height="100" style="border-radius: 50%">
           <!-- <el-avatar :size="100" :src="avatar">
             <img src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" />
           </el-avatar> -->
-          <span class="secondary-font" style="display: inline-block; margin-bottom: 5px">
+          <p class="secondary-font" style="position: absolute;margin-bottom: 5px;margin-top: 80px;margin-left: 88px">
             点击头像切换头像
-          </span>
+          </p>
         </div>
         <el-form-item>
           <el-input type="text" autocomplete="new-password" v-model="registerInfo.username" prefix-icon="el-icon-user"
